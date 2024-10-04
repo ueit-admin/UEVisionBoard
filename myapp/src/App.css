@@ -1,0 +1,28 @@
+.mobile-disclaimer {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+
+  .content-pages {
+    display: none;
+  }
+
+  .mobile-disclaimer {
+    display: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    background-color: white;
+  }
+
+  .mobile-disclaimer h1 {
+    font-size: 2em;
+  }
+
+}

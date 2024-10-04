@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.sticker-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 6em;
+    width: 100%;
+    background-color: #003DA5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 10px 5px #888888;
+}
+
+.header h1 {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+}
+
+.body {
+    display: flex;
+    height: calc(100vh - 6em);
+}
+
+.left-container {
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sticker-select {
+    max-height: 100%;
+    max-width: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    padding: 1em 0;
+}
+
+.sticker-select img {
+    cursor: move;
+    height: 8em;
+    transition: all 0.3s ease;
+    margin: 1em 0;
+}
+
+.sticker-select img:hover {
+    transform: scale(1.2);
+}
+
+.right-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}   
+
+.overlay-container {
+    aspect-ratio: 11/17;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 0 10px 5px #888888;
+    position: relative;
+}
+
+.final-selfie {
+    position: absolute;
+    top: 0;
+    height: 50%;
+    pointer-events: none;
+}
+
+.final-theme {
+    position: absolute;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sticker-canvas {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.sticker-canvas img {
+    position: absolute;
+    height: 17%;
+    cursor: move;
+}
+
+.button {
+    border-radius: 12px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+}
+
+.pink {
+    background-color: #EA4C89;
+}
+
+.green {
+    background-color: #309d4f;
+}
+
+.clear {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.print {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px #888888;
+}
+.pink:hover {
+    background-color: #e82f76;
+}
+
+.green:hover {
+    background-color: #039e2f;
+}
+
+.popup {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.opacity {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.form {
+    position: absolute;
+    background-color: #EEEEEE;
+    height: 60%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+}
+
+.form h3 {
+    font-size: 50px;
+}
+
+.form input {
+    width: 20em;
+    font-size: 14px;
+    padding: 12px 20px;
+    margin: 50px;
+    border: solid 1px #888888;
+    border-radius: 10px;
+}
+
+.close {
+    color: black;
+    cursor: pointer ;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 3em;
+}
+
+.canvas {
+    z-index: 5;
+}
