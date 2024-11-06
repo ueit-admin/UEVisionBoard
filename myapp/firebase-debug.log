@@ -1,0 +1,113 @@
+[debug] [2024-11-06T00:09:12.217Z] ----------------------------------------------------------------------
+[debug] [2024-11-06T00:09:12.219Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2024-11-06T00:09:12.220Z] CLI Version:   13.24.0
+[debug] [2024-11-06T00:09:12.220Z] Platform:      win32
+[debug] [2024-11-06T00:09:12.220Z] Node Version:  v22.9.0
+[debug] [2024-11-06T00:09:12.220Z] Time:          Tue Nov 05 2024 16:09:12 GMT-0800 (Pacific Standard Time)
+[debug] [2024-11-06T00:09:12.220Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-06T00:09:12.284Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-06T00:09:12.284Z] > authorizing via signed-in user (ueit-admin@ucr.edu)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shanshal.UE-SHANSHAL2\Documents\GitHub\UEVisionBoard\myapp
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-11-06T00:09:15.054Z] Using project from CLI flag: uereacta
+[debug] [2024-11-06T00:09:15.055Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:09:15.055Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:09:15.056Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/uereacta [none]
+[debug] [2024-11-06T00:09:15.447Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/uereacta 403
+[debug] [2024-11-06T00:09:15.447Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/uereacta {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-11-06T00:09:15.448Z] Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+[debug] [2024-11-06T00:09:15.506Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to get Firebase project uereacta. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-11-06T00:12:59.499Z] ----------------------------------------------------------------------
+[debug] [2024-11-06T00:12:59.502Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-11-06T00:12:59.502Z] CLI Version:   13.24.0
+[debug] [2024-11-06T00:12:59.502Z] Platform:      win32
+[debug] [2024-11-06T00:12:59.502Z] Node Version:  v22.9.0
+[debug] [2024-11-06T00:12:59.502Z] Time:          Tue Nov 05 2024 16:12:59 GMT-0800 (Pacific Standard Time)
+[debug] [2024-11-06T00:12:59.502Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-06T00:12:59.571Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-06T00:12:59.571Z] > authorizing via signed-in user (ueit-admin@ucr.edu)
+[debug] [2024-11-06T00:12:59.571Z] [iam] checking project uereacta for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-11-06T00:12:59.573Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:12:59.573Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:12:59.574Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions [none]
+[debug] [2024-11-06T00:12:59.574Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions x-goog-quota-user=projects/uereacta
+[debug] [2024-11-06T00:12:59.574Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-06T00:12:59.947Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions 200
+[debug] [2024-11-06T00:12:59.948Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions {}
+[debug] [2024-11-06T00:12:59.948Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project uereacta:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-11-06T00:12:59.948Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:12:59.948Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:12:59.948Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/uereacta [none]
+[debug] [2024-11-06T00:13:00.341Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/uereacta 403
+[debug] [2024-11-06T00:13:00.342Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/uereacta {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-11-06T00:13:00.342Z] Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+[debug] [2024-11-06T00:13:00.403Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to get Firebase project uereacta. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-11-06T00:26:29.277Z] ----------------------------------------------------------------------
+[debug] [2024-11-06T00:26:29.280Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-11-06T00:26:29.281Z] CLI Version:   13.24.0
+[debug] [2024-11-06T00:26:29.281Z] Platform:      win32
+[debug] [2024-11-06T00:26:29.281Z] Node Version:  v22.9.0
+[debug] [2024-11-06T00:26:29.281Z] Time:          Tue Nov 05 2024 16:26:29 GMT-0800 (Pacific Standard Time)
+[debug] [2024-11-06T00:26:29.281Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-06T00:26:29.346Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-06T00:26:29.347Z] > authorizing via signed-in user (ueit-admin@ucr.edu)
+[debug] [2024-11-06T00:26:29.347Z] [iam] checking project uereacta for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-11-06T00:26:29.348Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:26:29.348Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:26:29.349Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions [none]
+[debug] [2024-11-06T00:26:29.349Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions x-goog-quota-user=projects/uereacta
+[debug] [2024-11-06T00:26:29.349Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-06T00:26:29.751Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions 200
+[debug] [2024-11-06T00:26:29.751Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/uereacta:testIamPermissions {}
+[debug] [2024-11-06T00:26:29.751Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project uereacta:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-11-06T00:26:29.752Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:26:29.752Z] Checked if tokens are valid: true, expires at: 1730853888555
+[debug] [2024-11-06T00:26:29.752Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/uereacta [none]
+[debug] [2024-11-06T00:26:30.049Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/uereacta 403
+[debug] [2024-11-06T00:26:30.049Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/uereacta {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-11-06T00:26:30.050Z] Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+[debug] [2024-11-06T00:26:30.119Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/uereacta had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\shanshal.UE-SHANSHAL2\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to get Firebase project uereacta. Please make sure the project exists and your account has permission to access it.
