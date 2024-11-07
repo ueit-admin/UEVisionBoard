@@ -19,7 +19,6 @@
     align-items: center;
     justify-content: center;
     z-index: 2;
-    box-shadow: 0 0 10px 5px #888888;
 }
 
 .header h1 {
@@ -30,56 +29,56 @@
 
 .body {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: calc(100vh - 6em);
+    width: 100%;
 }
 
 .left-container {
-    width: 50%;
+    width: 45%;
     height: 100%;
     z-index: 1;
     display: flex;
     flex-direction: column;
 }
 
-.opt {
+.opt-selector {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 2em;
+}
+
+.opt-button {
     font-size: 1.5em;
     padding: 0.5em 0.75em;
-    border: solid #003DA5 3px;
+    border: solid #003DA5 2px;
     border-radius: 2em;
     background-color: white;
-    margin: 1em 0 0 0;
+    margin: 1em 0;
     transition: all 0.3s ease;
 }
 
-.opt:hover{
+.opt-button:hover{
     transform: scale(1.1);
     cursor: pointer;
 }
 
-.opt-selector {
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    flex-shrink: 0;
-}
-
 .theme-select {
-    height: auto;
     width: 100%;
-    overflow: auto;
-    flex-grow: 1;
+    flex: 1;
+    overflow-y: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
     justify-items: center;
-    padding: 1em 0;
 }
 
 .theme-select img {
     border: solid 1px lightgray;
     border-radius: 1em;
-    height: 275px;
+    height: 30vh;
     background-image:
       linear-gradient(45deg, #888 26%, transparent 26%), 
       linear-gradient(135deg, #888 26%, transparent 26%),
@@ -97,9 +96,48 @@
     border: solid 1px black
 }
 
-.right-container {
+.photos-instructions {
+    width: 10%;
     height: 100%;
-    width: 50%;
+}
+
+.photos-instructions > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid #003DA5 2px;
+    background-color: white;
+    border-radius: 1em;
+    position: relative;
+    padding: 1em 0;
+}
+
+.photos-instructions h2 {
+    max-width: 70%;
+    font-size: 1.5em; 
+    font-weight: 400;
+}
+
+.photos-instructions .arrow{
+    font-size: 40px;
+}
+
+.selfie-scotty {
+    top: 2em;
+}
+
+.choose-theme {
+    top: 25%;
+}
+
+.take-picture {
+    top: 60%;
+}
+
+.right-container {
+    flex: 1;
+    width: 45%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,7 +150,7 @@
     height: 90%;
     display: flex;
     overflow: hidden;
-    box-shadow: 0 0 10px 5px #888888;
+    box-shadow: 0 0 20px 0px #888888;
     position: relative;
 }
 
@@ -136,15 +174,15 @@
     z-index: 3;
 }
 
-.side {
+.button {
     position: absolute;
     bottom: 0;
-    border-radius: 12px;
+    border-radius: 1em;
     border-style: none;
     box-sizing: border-box;
     color: #FFFFFF;
-    font-size: 18px;
-    padding: 15px 20px;
+    font-size: 2em;
+    padding: 0.75em;
     transition: all 0.3s ease;
 }
 
@@ -187,15 +225,17 @@
 
 .capture-button{
     position: absolute;
-    font-size: 5em;
-    top: 80%;
+    font-size: 8em;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     color: #888888;
     transition: all 0.3s ease;
     z-index: 4;
 }
 
 .capture-button:hover{
-    transform: scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
     cursor: pointer;
     z-index: 4;
 }

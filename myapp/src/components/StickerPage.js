@@ -1,9 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import '../styles/StickerPage.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Draggable from 'react-draggable';
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 
 
 const StickerPage = ({ selfie, theme, Restart }) => {
@@ -125,13 +127,33 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                             ))}
                         </div>
                     </div>
+                    <div className='sticker-instructions'>
+                        <div className='drag-sticker'>
+                            <IoIosArrowBack className='arrow'/>
+                            <h2>
+                                Drag your favorite<br/>stickers to your poster
+                            </h2>
+                        </div>
+                        <div className='rearrange-sticker'>
+                            <h2>
+                                Rearrange the stickers<br/>to your liking
+                            </h2>
+                            <IoIosArrowForward className='arrow'/>
+                        </div>
+                        <div className='print-vision'>
+                            <h2>
+                                Print your vision board!
+                            </h2>
+                            <IoIosArrowForward className='arrow'/>
+                        </div>
+                        </div>
                     <div className='right-container'>
                         <div className='overlay-container' ref={sectionRef}>
                             {selfie ? (
-                                <img className='final-selfie' src={selfie}></img>
+                                <img className='final-selfie' src={selfie} alt=""></img>
                             ) : (() => {})}
                             {theme ? (
-                                <img className='final-theme' src={theme}></img>
+                                <img className='final-theme' src={theme} alt=""></img>
                             ) : (() => {})}
                             <div className='sticker-canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
                                     {stickers.map((sticker, index) => (
@@ -141,8 +163,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                     ))}
                             </div>
                         </div>
-                        <button className='button pink clear' onClick={clear}>Clear</button>
-                        <button className='button green print' onClick={screenshotAndPrint}>Print</button>
+                        <button className='button clear' onClick={clear}>Clear</button>
+                        <button className='button print' onClick={screenshotAndPrint}>Print</button>
                     </div>
                 </div>
                 {showPopup && (
@@ -150,14 +172,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                         <div className='opacity'/>
                         <div className='form'>
                             <IoIosCloseCircleOutline className='close' onClick={handleClose}/>
-                            {/* <h3>Email not working, leave empty</h3>
-                            <input 
-                                type="email" 
-                                value={email} 
-                                onChange={(e) => setEmail(e.target.value)} 
-                                placeholder="email (optional)"
-                            /> */}
-                            <button className='button green restart' onClick={Restart}>Restart</button>
+                            <button className='restart' onClick={Restart}>Restart</button>
                         </div>
                     </div>
                 )}
