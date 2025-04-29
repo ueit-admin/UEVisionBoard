@@ -149,6 +149,25 @@
     cursor: move;
 }
 
+.textbox-blue {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: 1px solid black;
+    background: rgb(0,61,165);
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.textbox:focus {
+    border: 2px solid #4A90E2;
+    background: #f0f8ff;
+    color: black;
+}
+
 .button {
     position: absolute;
     bottom: 0;
@@ -175,6 +194,20 @@
     background-color: #309d4f;
 }
 
+.text-blue {
+    border-radius: 1em;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF; /* white text */
+    font-size: 2em;
+    padding: 0.75em;
+    transition: all 0.3s ease;
+    background-color: rgb(0,61,165);
+    width: 80%;
+    margin-top: 1em;
+    text-align: center;
+}
+
 .clear:hover {
     cursor: pointer;
     box-shadow: 0 0 10px 3px #888888;
@@ -185,6 +218,12 @@
     cursor: pointer;
     box-shadow: 0 0 10px 3px #888888;
     background-color: #039e2f;
+}
+
+.text:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px #888888;
+    background-color: #F8C51C;
 }
 
 .popup {
