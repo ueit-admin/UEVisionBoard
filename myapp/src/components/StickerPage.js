@@ -15,7 +15,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     const [stickers, setStickers] = useState([]);
     const [textBoxes, setTextBoxes] = useState([]);
 
-    const addTextBox = () => {
+    const addTextBox = (color) => {
         setTextBoxes((prev) => [
             ...prev,
             { 
@@ -24,7 +24,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 y: 100,
                 width: 200,
                 height: 100,
-                text: "Add text"
+                text: "Add text",
+                color: color
             }
         ]);
     };    
@@ -132,8 +133,9 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 <div className='body'>
                     <div className='left-container'>
                         <div className='sticker-select'>
-                        <button  className="text-blue" onClick={addTextBox}>Add Text</button>
-
+                        <button className="text-blue" onClick={() => addTextBox('blue')}>Add Text</button>
+                        <button className="text-yellow" onClick={() => addTextBox('yellow')}>Add Text</button>
+                        <button className="text-white" onClick={() => addTextBox('white')}>Add Text</button>
                             {stickerSources.map((src, index) => (
                                 <img
                                     key={index}
@@ -192,7 +194,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                         }}
                                     >
                                         <textarea
-                                            className='textbox-blue'
+                                            className={`textbox-${box.color}`}
                                             value={box.text}
                                             onChange={(e) =>
                                                 setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
