@@ -193,13 +193,15 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                             setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, width: ref.offsetWidth, height: ref.offsetHeight, x: position.x, y: position.y} : b));
                                         }}
                                     >
-                                        <textarea
+                                       <div className={`textbox-${box.color}`}>
+                                       <textarea
                                             className={`textbox-${box.color}`}
                                             value={box.text}
                                             onChange={(e) =>
                                                 setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
                                             }
                                         />
+                                        </div> 
                                     </Rnd>
                                 ))}
                             </div>

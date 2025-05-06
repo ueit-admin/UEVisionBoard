@@ -169,16 +169,34 @@
 }
 
 .textbox-blue {
-    width: 100%;
-    height: 100%;
-    resize: none;
-    border: 1px solid black;
-    background: rgb(0,61,165);
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(0, 61, 165); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(0, 61, 165); /* Bubble background color */
     font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
     color: white;
     text-align: center;
     outline: none;
     transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+
+.textbox-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(0, 61, 165) transparent transparent transparent; /* Match bubble color */
 }
 
 .textbox-blue:focus {
@@ -200,6 +218,7 @@
     transition: all 0.3s ease;
 }
 
+
 .text-yellow:hover {
     cursor: pointer;
     box-shadow: 0 0 10px 3px #888888;
@@ -207,16 +226,33 @@
 }
 
 .textbox-yellow {
-    width: 100%;
-    height: 100%;
-    resize: none;
-    border: 1px solid black;
-    background: rgb(255,184,28);
-    font-size: 14px;
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(255,184,28); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(255,184,28); /* Bubble background color */
+    font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
     color: black;
     text-align: center;
     outline: none;
     transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+.textbox-yellow::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(255,184,28) transparent transparent transparent; /* Match bubble color */
 }
 
 .textbox-yellow:focus {
@@ -244,16 +280,34 @@
 }
 
 .textbox-white {
-    width: 100%;
-    height: 100%;
-    resize: none;
-    border: 1px solid black;
-    background: white;
-    font-size: 12px;
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(207, 202, 188); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(207, 202, 188); /* Bubble background color */
+    font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
     color: black;
     text-align: center;
     outline: none;
     transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+
+.textbox-white::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(207, 202, 188) transparent transparent transparent; /* Match bubble color */
 }
 
 .textbox-white:focus {
