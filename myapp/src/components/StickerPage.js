@@ -6,13 +6,29 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import Draggable from 'react-draggable';
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
-
+import { Rnd } from "react-rnd";
 
 const StickerPage = ({ selfie, theme, Restart }) => {
 
     const sectionRef = useRef();
     const [showPopup, setShowPopup] = useState(false);
     const [stickers, setStickers] = useState([]);
+    const [textBoxes, setTextBoxes] = useState([]);
+
+    const addTextBox = (color) => {
+        setTextBoxes((prev) => [
+            ...prev,
+            { 
+                id: Date.now(),
+                x: 100,
+                y: 100,
+                width: 200,
+                height: 100,
+                text: "Add text",
+                color: color
+            }
+        ]);
+    };    
 
     const importImages = (r) => {
         return r.keys().map(r);
@@ -45,7 +61,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     };
 
     const clear = () => {
-        setStickers([])
+        setStickers([]);
+        setTextBoxes([]);
     }
   
     const handleClose = () => {
@@ -116,6 +133,9 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 <div className='body'>
                     <div className='left-container'>
                         <div className='sticker-select'>
+                        <button className="text-blue" onClick={() => addTextBox('blue')}>Add Text</button>
+                        <button className="text-yellow" onClick={() => addTextBox('yellow')}>Add Text</button>
+                        <button className="text-white" onClick={() => addTextBox('white')}>Add Text</button>
                             {stickerSources.map((src, index) => (
                                 <img
                                     key={index}
@@ -156,11 +176,34 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                 <img className='final-theme' src={theme} alt=""></img>
                             ) : (() => {})}
                             <div className='sticker-canvas' onDrop={handleDrop} onDragOver={handleDragOver}>
-                                    {stickers.map((sticker, index) => (
-                                        <Draggable onMouseDown={(e) => {e.preventDefault()}}>
-                                            <img key={index} src={sticker.src} alt={`sticker-${index}`}style={{left: sticker.x,top: sticker.y,}} />
-                                        </Draggable>
-                                    ))}
+                                {stickers.map((sticker, index) => (
+                                    <Draggable onMouseDown={(e) => {e.preventDefault()}}>
+                                        <img key={index} src={sticker.src} alt={`sticker-${index}`}style={{left: sticker.x,top: sticker.y,}} />
+                                    </Draggable>
+                                ))}
+                                {textBoxes.map((box) => (
+                                    <Rnd
+                                        key={box.id}
+                                        default={{ x: box.x, y: box.y, width: box.width, height: box.height }}
+                                        bounds="parent"
+                                        onDragStop={(e, d) => {
+                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, x: d.x, y: d.y} : b));
+                                        }}
+                                        onResizeStop={(e, direction, ref, delta, position) => {
+                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, width: ref.offsetWidth, height: ref.offsetHeight, x: position.x, y: position.y} : b));
+                                        }}
+                                    >
+                                       <div className={`textbox-${box.color}`}>
+                                       <textarea
+                                            className={`textbox-${box.color}`}
+                                            value={box.text}
+                                            onChange={(e) =>
+                                                setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
+                                            }
+                                        />
+                                        </div> 
+                                    </Rnd>
+                                ))}
                             </div>
                         </div>
                         <button className='button clear' onClick={clear}>Clear</button>

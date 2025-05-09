@@ -149,6 +149,172 @@
     cursor: move;
 }
 
+.text-blue {
+    border-radius: 1em;
+    border: none;
+    background-color: rgb(0,61,165);
+    color: white;
+    font-size: 1.8em;
+    padding: 0.75em;
+    width: 80%;
+    margin-top: 1em;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.text-blue:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px #888888;
+    background-color: rgb(0,61,165);
+}
+
+.textbox-blue {
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(0, 61, 165); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(0, 61, 165); /* Bubble background color */
+    font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
+    color: white;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+
+.textbox-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(0, 61, 165) transparent transparent transparent; /* Match bubble color */
+}
+
+.textbox-blue:focus {
+    border: 2px solid #4A90E2;
+    background: #f0f8ff;
+    color: black;
+}
+
+.text-yellow {
+    border-radius: 1em;
+    border: none;
+    background-color: rgb(255,184,28);
+    color: black;
+    font-size: 1.8em;
+    padding: 0.75em;
+    width: 80%;
+    margin-top: 1em;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+
+.text-yellow:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px #888888;
+    background-color: rgb(255,184,28);
+}
+
+.textbox-yellow {
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(255,184,28); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(255,184,28); /* Bubble background color */
+    font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
+    color: black;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+.textbox-yellow::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(255,184,28) transparent transparent transparent; /* Match bubble color */
+}
+
+.textbox-yellow:focus {
+    border: 2px solid #d6a400;
+    background: #fff8dc;
+}
+
+.text-white {
+    border-radius: 1em;
+    border: 1px solid #000;
+    background-color: white;
+    color: black;
+    font-size: 1.8em;
+    padding: 0.75em;
+    width: 80%;
+    margin-top: 1em;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.text-white:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px #888888;
+    background-color: #f2f2f2;
+}
+
+.textbox-white {
+    position: relative; /* Ensure the pseudo-element is positioned relative to this */
+    border-radius: 1rem; /* Rounded corners for bubble shape */
+    width: 100%; /* Allow dynamic width */
+    height: 100%; /* Allow dynamic height */
+    resize: none; /* Allow resizing */
+    border: 1px solid rgb(207, 202, 188); /* Border for the bubble */
+    box-sizing: border-box;
+    background: rgb(207, 202, 188); /* Bubble background color */
+    font-size: 16px;
+    padding: 1em; /* Padding for text inside the bubble */
+    color: black;
+    text-align: center;
+    outline: none;
+    transition: all 0.2s ease;
+    overflow: visible; /* Ensure the tail is not clipped */
+}
+
+.textbox-white::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* Position the tail below the bubble */
+    left: 50%; /* Center the tail horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px; /* Create a triangle */
+    border-color: rgb(207, 202, 188) transparent transparent transparent; /* Match bubble color */
+}
+
+.textbox-white:focus {
+    border: 2px solid #aaa;
+    background: #eaeaea;
+}
+
 .button {
     position: absolute;
     bottom: 0;
