@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+.fixed-textbox {
+    position: absolute;
+    font-size: 20px;
+    background-color: #ffffffcc;
+    border: 2px dashed #333;
+    padding: 8px;
+    color: #000;
+    resize: none;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+
 .sticker-page {
     height: 100vh;
     width: 100vw;
@@ -177,10 +189,11 @@
     border: 1px solid rgb(0, 61, 165); /* Border for the bubble */
     box-sizing: border-box;
     background: rgb(0, 61, 165); /* Bubble background color */
+    font-family: 'Comic Sans MS', 'Comic Sans';
     font-size: 16px;
-    padding: 1em; /* Padding for text inside the bubble */
+    padding: 0.5em; /* Padding for text inside the bubble */
     color: white;
-    text-align: center;
+    text-align: left;
     outline: none;
     transition: all 0.2s ease;
     overflow: visible; /* Ensure the tail is not clipped */
@@ -199,12 +212,6 @@
     border-color: rgb(0, 61, 165) transparent transparent transparent; /* Match bubble color */
 }
 
-.textbox-blue:focus {
-    border: 2px solid #4A90E2;
-    background: #f0f8ff;
-    color: black;
-}
-
 .text-yellow {
     border-radius: 1em;
     border: none;
@@ -217,7 +224,6 @@
     text-align: center;
     transition: all 0.3s ease;
 }
-
 
 .text-yellow:hover {
     cursor: pointer;
@@ -234,10 +240,11 @@
     border: 1px solid rgb(255,184,28); /* Border for the bubble */
     box-sizing: border-box;
     background: rgb(255,184,28); /* Bubble background color */
-    font-size: 16px;
-    padding: 1em; /* Padding for text inside the bubble */
+    font-family: 'Comic Sans MS', 'Comic Sans';
+    font-size: 14px;
+    padding: 0.5em; /* Padding for text inside the bubble */
     color: black;
-    text-align: center;
+    text-align: left;
     outline: none;
     transition: all 0.2s ease;
     overflow: visible; /* Ensure the tail is not clipped */
@@ -253,11 +260,6 @@
     border-style: solid;
     border-width: 10px 10px 0 10px; /* Create a triangle */
     border-color: rgb(255,184,28) transparent transparent transparent; /* Match bubble color */
-}
-
-.textbox-yellow:focus {
-    border: 2px solid #d6a400;
-    background: #fff8dc;
 }
 
 .text-white {
@@ -285,13 +287,14 @@
     width: 100%; /* Allow dynamic width */
     height: 100%; /* Allow dynamic height */
     resize: none; /* Allow resizing */
-    border: 1px solid rgb(207, 202, 188); /* Border for the bubble */
+    border: 1px solid rgb(255, 241, 210); /* Border for the bubble */
     box-sizing: border-box;
-    background: rgb(207, 202, 188); /* Bubble background color */
-    font-size: 16px;
-    padding: 1em; /* Padding for text inside the bubble */
+    background: rgb(255, 241, 210); /* Bubble background color */
+    font-family: 'Comic Sans MS', 'Comic Sans';
+    font-size: 12px;
+    padding: 0.5em; /* Padding for text inside the bubble */
     color: black;
-    text-align: center;
+    text-align: left;
     outline: none;
     transition: all 0.2s ease;
     overflow: visible; /* Ensure the tail is not clipped */
@@ -307,12 +310,7 @@
     height: 0;
     border-style: solid;
     border-width: 10px 10px 0 10px; /* Create a triangle */
-    border-color: rgb(207, 202, 188) transparent transparent transparent; /* Match bubble color */
-}
-
-.textbox-white:focus {
-    border: 2px solid #aaa;
-    background: #eaeaea;
+    border-color: rgb(255, 241, 210) transparent transparent transparent; /* Match bubble color */
 }
 
 .button {
