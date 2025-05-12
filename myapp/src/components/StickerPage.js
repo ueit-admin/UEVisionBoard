@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../styles/StickerPage.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -15,6 +15,20 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     const [stickers, setStickers] = useState([]);
     const [textBoxes, setTextBoxes] = useState([]);
 
+    useEffect(() => {
+        const fixedBox = {
+            id: 'fixed-box',
+            x: 200,
+            y: 115,
+            width: 170,
+            height: 20,
+            text: "Name here",
+            color: 'white',
+            fixed: true
+        };
+        setTextBoxes((prev) => [...prev, fixedBox]);
+    }, []);
+    
     const addTextBox = (color) => {
         setTextBoxes((prev) => [
             ...prev,
@@ -62,7 +76,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
 
     const clear = () => {
         setStickers([]);
-        setTextBoxes([]);
+        setTextBoxes((prev) => prev.filter((box) => box.fixed));
     }
   
     const handleClose = () => {
@@ -133,9 +147,9 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 <div className='body'>
                     <div className='left-container'>
                         <div className='sticker-select'>
-                        <button className="text-blue" onClick={() => addTextBox('blue')}>Add Text</button>
-                        <button className="text-yellow" onClick={() => addTextBox('yellow')}>Add Text</button>
-                        <button className="text-white" onClick={() => addTextBox('white')}>Add Text</button>
+                        <button className="text-blue" onClick={() => addTextBox('blue')}>Click to Add Text (L)</button>
+                        <button className="text-yellow" onClick={() => addTextBox('yellow')}>Click to Add Text (M)</button>
+                        <button className="text-white" onClick={() => addTextBox('white')}>Click to Add Text (S)</button>
                             {stickerSources.map((src, index) => (
                                 <img
                                     key={index}
@@ -166,7 +180,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                             </h2>
                             <IoIosArrowForward className='arrow'/>
                         </div>
-                        </div>
+                    </div>
                     <div className='right-container'>
                         <div className='overlay-container' ref={sectionRef}>
                             {selfie ? (
@@ -181,27 +195,85 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                         <img key={index} src={sticker.src} alt={`sticker-${index}`}style={{left: sticker.x,top: sticker.y,}} />
                                     </Draggable>
                                 ))}
-                                {textBoxes.map((box) => (
-                                    <Rnd
-                                        key={box.id}
-                                        default={{ x: box.x, y: box.y, width: box.width, height: box.height }}
-                                        bounds="parent"
-                                        onDragStop={(e, d) => {
-                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, x: d.x, y: d.y} : b));
-                                        }}
-                                        onResizeStop={(e, direction, ref, delta, position) => {
-                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, width: ref.offsetWidth, height: ref.offsetHeight, x: position.x, y: position.y} : b));
-                                        }}
-                                    >
-                                        <textarea
-                                            className={`textbox-${box.color}`}
-                                            value={box.text}
-                                            onChange={(e) =>
-                                                setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
-                                            }
-                                        />
-                                    </Rnd>
-                                ))}
+                                {textBoxes.map((box) => {
+                                    const isFixed = box.id === 'fixed-box';
+
+                                    if (isFixed) {
+                                        // Render fixed textbox without Rnd wrapper
+                                        return (
+                                            <div
+                                                key={box.id}
+                                                style={{
+                                                    position: 'absolute',
+                                                    left: box.x,
+                                                    top: box.y,
+                                                    width: box.width,
+                                                    height: box.height
+                                                }}
+                                            >
+                                                <textarea
+                                                    className="fixed-textbox"
+                                                    style={{ width: '100%', height: '100%' }}
+                                                    value={box.text}
+                                                    onChange={(e) =>
+                                                        setTextBoxes((prev) =>
+                                                            prev.map((b) =>
+                                                                b.id === box.id ? { ...b, text: e.target.value } : b
+                                                            )
+                                                        )
+                                                    }
+                                                />
+                                        
+                                            </div>
+                                        );
+                                    } else {
+                                        // Render draggable & resizable textboxes
+                                        return (
+                                            <Rnd
+                                                key={box.id}
+                                                default={{
+                                                    x: box.x,
+                                                    y: box.y,
+                                                    width: box.width,
+                                                    height: box.height
+                                                }}
+                                                bounds="parent"
+                                                onDragStop={(e, d) => {
+                                                    setTextBoxes((prev) =>
+                                                        prev.map((b) =>
+                                                            b.id === box.id ? { ...b, x: d.x, y: d.y } : b
+                                                        )
+                                                    );
+                                                }}
+                                                onResizeStop={(e, direction, ref, delta, position) => {
+                                                    setTextBoxes((prev) =>
+                                                        prev.map((b) =>
+                                                            b.id === box.id
+                                                                ? {
+                                                                    ...b,
+                                                                    width: ref.offsetWidth,
+                                                                    height: ref.offsetHeight,
+                                                                    x: position.x,
+                                                                    y: position.y
+                                                                }
+                                                                : b
+                                                        )
+                                                    );
+                                                }}
+                                            >
+                                                <div className={`textbox-${box.color}`}>
+                                                    <textarea
+                                                        className={`textbox-${box.color}`}
+                                                        value={box.text}
+                                                        onChange={(e) =>
+                                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
+                                                        }
+                                                    />
+                                                </div> 
+                                            </Rnd>
+                                        );
+                                    }
+                                })}
                             </div>
                         </div>
                         <button className='button clear' onClick={clear}>Clear</button>
