@@ -22,9 +22,9 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     
             const fixedBox = {
                 id: 'fixed-box',
-                x: 195,
-                y: 115,
-                width: 165,
+                x: 450,
+                y: 160,
+                width: 170,
                 height: 20,
                 text: "Name here",
                 color: 'white',
@@ -280,7 +280,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                                         value={box.text}
                                                         onFocus={() =>
                                                             setTextBoxes((prev) =>
-                                                                prev.map((b) => b.id === box.id && !b.hasBeenEdited ? { ...b, text: '', hasBeenEdited: true } : b)
+                                                                prev.map((b) => b.id === box.id && !b.hasBeenEdinpmted ? { ...b, text: '', hasBeenEdited: true } : b)
                                                             )
                                                         }
                                                         onChange={(e) =>
