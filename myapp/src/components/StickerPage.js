@@ -16,17 +16,22 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     const [textBoxes, setTextBoxes] = useState([]);
 
     useEffect(() => {
-        const fixedBox = {
-            id: 'fixed-box',
-            x: 200,
-            y: 115,
-            width: 170,
-            height: 20,
-            text: "Name here",
-            color: 'white',
-            fixed: true
-        };
-        setTextBoxes((prev) => [...prev, fixedBox]);
+        setTextBoxes((prev) => {
+            const alreadyExists = prev.some((box) => box.id === 'fixed-box');
+            if (alreadyExists) return prev; // Prevents duplicate from appearing
+    
+            const fixedBox = {
+                id: 'fixed-box',
+                x: 195,
+                y: 115,
+                width: 165,
+                height: 20,
+                text: "Name here",
+                color: 'white',
+                fixed: true
+            };
+            return [...prev, fixedBox];
+        });
     }, []);
     
     const addTextBox = (color) => {
@@ -39,7 +44,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 width: 200,
                 height: 100,
                 text: "Add text",
-                color: color
+                color: color,
+                hasBeenEdited: false
             }
         ]);
     };    
@@ -201,14 +207,22 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                     if (isFixed) {
                                         // Render fixed textbox without Rnd wrapper
                                         return (
-                                            <div
-                                                key={box.id}
-                                                style={{
-                                                    position: 'absolute',
-                                                    left: box.x,
-                                                    top: box.y,
+                                            <Rnd
+                                                key={`textbox-${box.id}`}
+                                                default={{
+                                                    x: box.x,
+                                                    y: box.y,
                                                     width: box.width,
                                                     height: box.height
+                                                }}
+                                                bounds="parent"
+                                                enableResizing={false} // makes it not resizable
+                                                onDragStop={(e, d) => {
+                                                    setTextBoxes((prev) =>
+                                                        prev.map((b) =>
+                                                            b.id === box.id ? { ...b, x: d.x, y: d.y } : b
+                                                        )
+                                                    );
                                                 }}
                                             >
                                                 <textarea
@@ -223,8 +237,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                                         )
                                                     }
                                                 />
-                                        
-                                            </div>
+                                            </Rnd>
                                         );
                                     } else {
                                         // Render draggable & resizable textboxes
@@ -265,6 +278,11 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                                     <textarea
                                                         className={`textbox-${box.color}`}
                                                         value={box.text}
+                                                        onFocus={() =>
+                                                            setTextBoxes((prev) =>
+                                                                prev.map((b) => b.id === box.id && !b.hasBeenEdited ? { ...b, text: '', hasBeenEdited: true } : b)
+                                                            )
+                                                        }
                                                         onChange={(e) =>
                                                             setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
                                                         }
