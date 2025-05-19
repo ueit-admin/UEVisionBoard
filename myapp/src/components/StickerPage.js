@@ -88,12 +88,19 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     const handleClose = () => {
         setShowPopup(false);
     };
+    const [isScreenshotting, setIsScreenshotting] = useState(false);
 
     const screenshotAndPrint = async () => {
+
+        setIsScreenshotting(true); // Enter screenshot mode
+        await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for DOM update
+
         const screenshotElement = sectionRef.current;
         const canvas = await html2canvas(screenshotElement);
         const image = canvas.toDataURL('image/png');
-    
+
+       
+
         // Create a PDF and add the image to it
         const tempPdf = new jsPDF({orientation: 'portrait', unit: 'in', format: 'tabloid'});
         const pdfWidth = tempPdf.internal.pageSize.getWidth();
@@ -141,6 +148,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
         }
 
         setTimeout(() => {setShowPopup(true)}, 1000);
+
+         setIsScreenshotting(false); // Exit screenshot mode
 
     };
 
@@ -275,18 +284,48 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                                 }}
                                             >
                                                 <div className={`textbox-${box.color}`}>
-                                                    <textarea
-                                                        className={`textbox-${box.color}`}
-                                                        value={box.text}
-                                                        onFocus={() =>
-                                                            setTextBoxes((prev) =>
-                                                                prev.map((b) => b.id === box.id && !b.hasBeenEdinpmted ? { ...b, text: '', hasBeenEdited: true } : b)
-                                                            )
-                                                        }
-                                                        onChange={(e) =>
-                                                            setTextBoxes((prev) => prev.map((b) => b.id === box.id ? {...b, text: e.target.value} : b))
-                                                        }
-                                                    />
+                                                                                                    {!isScreenshotting ? (
+                                                        <textarea
+                                                            className={`textbox-${box.color}`}
+                                                            value={box.text}
+                                                            onFocus={() =>
+                                                                setTextBoxes((prev) =>
+                                                                    prev.map((b) =>
+                                                                        b.id === box.id && !b.hasBeenEdited
+                                                                            ? { ...b, text: '', hasBeenEdited: true }
+                                                                            : b
+                                                                    )
+                                                                )
+                                                            }
+                                                            onChange={(e) =>
+                                                                setTextBoxes((prev) =>
+                                                                    prev.map((b) =>
+                                                                        b.id === box.id ? { ...b, text: e.target.value } : b
+                                                                    )
+                                                                )
+                                                            }
+                                                        />
+                                                    ) : (
+                                                        <div
+                                                            className={`textbox-${box.color}`}
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                whiteSpace: 'pre-wrap',
+                                                                overflowWrap: 'break-word',
+                                                                padding: '0.5em',
+                                                                fontFamily: 'inherit',
+                                                                fontSize: 'inherit',
+                                                                color: 'inherit',
+                                                                background: 'inherit',
+                                                                border: 'inherit',
+                                                                borderRadius: 'inherit',
+                                                                boxSizing: 'border-box',
+                                                            }}
+                                                        >
+                                                            {box.text}
+                                                        </div>
+                                                    )}
                                                 </div> 
                                             </Rnd>
                                         );
