@@ -40,8 +40,10 @@
     height: 100%;
     z-index: 1;
     display: flex;
+ 
     flex-direction: column;
 }
+
 
 .opt-selector {
     width: 100%;
@@ -135,14 +137,16 @@
 }
 
 .right-container {
-    flex: 1;
-    width: 45%;
-    height: 100%;
+
+    
+  flex: 1;
+    width: 0%;
+   height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: relative; 
 }   
 
 .overlay-container {
@@ -243,4 +247,34 @@
 .blue {
     background-color: #003DA5;
     color: white;
+}
+
+/* Step containers */
+.step1, .step2, .step3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 1000px;
+  gap: 1.5em;
+}
+
+/* Next/Prev buttons */
+.button.next, .button.prev {
+  padding: 0.3em 2em;
+  margin: 0.5em;
+  font-size: 1.5em;
+  border-radius: 1em;
+   align-items: center;
+  justify-content: center;
+  border: none;
+  background: #003DA5;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.button.next:disabled {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
 }

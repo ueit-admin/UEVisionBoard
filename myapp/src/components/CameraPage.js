@@ -68,79 +68,103 @@ const CameraPage = ({ Confirm }) => {
   const themes = importImages(require.context('../../public/images/themes', false, /\.(png|jpe?g|svg)$/));
   const scotty = importImages(require.context('../../public/images/scotty', false, /\.(png|jpe?g|svg)$/));
 
+  const [step, setStep] = useState(1); // 1: select type, 2: select theme, 3: camera
+  const [mode, setMode] = useState('selfie'); // 'selfie' or 'scotty'
+
+
   return (
-    <div className='camera-page'>
-      <div className='header'>
-        <h1>Capture Your Vision!</h1>
-      </div>
-      <div className='body'>
-        <div className='left-container'>
-          <div className='opt-selector'>
-            <button className={`opt-button opt-selfie ${showScotty ? '' : 'blue'}`} onClick={() => {setShowScotty(false)}}>Selfie</button>
-            <button className={`opt-button opt-scotty ${showScotty ? 'blue' : ''}`} onClick={() => {setShowScotty(true)}}>Scotty</button>
-          </div>
-          <div className='theme-select'>   
-            {!showScotty && (
-              themes.map((theme, index) => (
-                <img key={index} src={theme} alt={`theme-${index}`} onClick={updateTheme}/>
-              ))
-            )}
-            {showScotty && (
-              scotty.map((theme, index) => (
-                <img key={index} src={theme} alt={`scotty-${index}`} onClick={updateTheme}/>
-              ))
-            )}
-          </div>
-        </div>
-        <div className='photos-instructions'>
-          <div className='selfie-scotty'>
-            <IoIosArrowBack className='arrow'/>
-            <h2>
-              Choose to take a selfie<br />or use a Scotty avatar
-            </h2>
-          </div>
-          <div className='choose-theme'>
-            <IoIosArrowBack className='arrow'/>
-            <h2>
-              Pick a poster theme
-            </h2>
-          </div>
-          <div className='take-picture'>
-            <h2>
-              Frame yourself and<br />capture your vision
-            </h2>
-            <IoIosArrowForward className='arrow'/>
-          </div>
-        </div>
-        <div className='right-container'>
-          <div className='overlay-container'>
-            {selectedSelfie ? (
-              <img className='selfie' src={selectedSelfie} key={selectedSelfie} alt=""></img>
-            ) : (
-              <Webcam
-                className='webcam'
-                audio={false} 
-                mirrored={true}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                videoConstraints={{
-                  // height: parentHeight,
-                  // width: (parentHeight * 11) / 17
-                  // aspectRatio: 11/17,
-                  facingMode: "user"
-                }}
-              />
-            )}
-            <img className='overlay-theme' src={selectedTheme} key={selectedTheme} alt=""></img>
-            <FaRegCircle className='capture-button' onClick={startCountdown}/>
-            {countdown !== null && countdown > 0 && (<div className="countdown-animation">{countdown}</div>)}
-          </div>
-          <button className='hidden button retake' onClick={reset}>Retake</button>
-          <button className='hidden button confirm' onClick={handleConfirm}>Confirm</button>
-        </div>
-      </div>
+  <div className='camera-page'>
+    <div className='header'>
+      <h1>Capture Your Vision!</h1>
     </div>
-  );
+    <div className='body'>
+    
+      <div className='left-container'>
+        {step === 1 && (
+          <div className="step1">
+            <h2>Choose your mode</h2><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <button
+              className={`opt-button ${mode === 'selfie' ? 'blue' : ''}`}
+              onClick={() => setMode('selfie')}
+            >
+              Selfie
+            </button>
+            <button
+              className={`opt-button ${mode === 'scotty' ? 'blue' : ''}`}
+              onClick={() => setMode('scotty')}
+            >
+              Scotty
+            </button>
+            <button className="button next" onClick={() => setStep(2)}>
+              Next
+            </button>
+            <br /><br /><br /><br /> <br /><br /><br /><br />
+            <p className="info-text">
+              {mode === 'selfie'
+                ? 'Capture a selfie with a fun theme!'
+                : 'Choose a Scotty avatar to capture!'}
+            </p>
+          </div>
+        )}
+        {step === 2 && (
+          <div className="step2">
+            <h2>{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
+            <div className="theme-select">
+              {(mode === 'selfie' ? themes : scotty).map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={mode === 'selfie' ? `theme-${idx}` : `scotty-${idx}`}
+                  onClick={() => setSelectedTheme(img)}
+                  className={selectedTheme === img ? 'selected' : ''}
+                />
+              ))}
+            </div>
+            <button className="button prev" onClick={() => setStep(1)}>Back</button>         
+            <button className="button next" onClick={() => setStep(3)} disabled={!selectedTheme}>
+              Next
+            </button>
+          </div>
+        )}
+        {step === 3 && (
+          <div className="step3">
+            <div className='overlay-container'>
+              {selectedSelfie ? (
+                <img className='selfie' src={selectedSelfie} alt="" />
+              ) : (
+                <Webcam
+                  className='webcam'
+                  audio={false}
+                  mirrored={true}
+                  ref={webcamRef}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={{ facingMode: "user" }}
+                />
+              )}
+              <img className='overlay-theme' src={selectedTheme} alt="" />
+              <FaRegCircle className='capture-button' onClick={startCountdown} />
+              {countdown !== null && countdown > 0 && (
+                <div className="countdown-animation">{countdown}</div>
+              )}
+            </div>
+            <button className='button prev' onClick={() => setStep(2)}>Back</button>
+            <button className='hidden button retake' onClick={reset}>Retake</button>
+            <button className='hidden button confirm' onClick={handleConfirm}>Confirm</button>
+          </div>
+        )}
+      </div>
+       <div className='right-container'> 
+       
+          {step === 2 && selectedTheme && selectedTheme !== '/images/themes/theme1.png' && (
+             <><h2>Theme Selection Preview</h2><img
+              src={selectedTheme}
+              alt="Selected Theme"
+              style={{ maxWidth: "100%", maxHeight: "80%", borderRadius: "1em" }} /></>
+  )}
+        </div>
+    </div>
+  </div>
+);
 
 };
 
