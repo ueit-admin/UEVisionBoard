@@ -1,26 +1,16 @@
 import React, { useRef, useState, } from 'react';
 import Webcam from 'react-webcam';
 import '../styles/CameraPage.css';
-import { FaRegCircle } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
 
 const CameraPage = ({ Confirm }) => {
 
   const [selectedTheme, setSelectedTheme] = useState('/images/themes/theme1.png');
-  // const [showScotty, setShowScotty] = useState(false);
   const [selectedSelfie, setSelectedSelfie] = useState(null);
   const [countdown, setCountdown] = useState(0);
   const webcamRef = useRef(null);
-  const [screenshot, setScreenshot] = useState(null);
 
   const [step, setStep] = useState(1); // 1: select type, 2: select theme, 3: camera
   const [mode, setMode] = useState(null); // 'selfie' or 'scotty'
-
-  const updateTheme = (event) => {
-    let imgSrc = event.target.src;
-    setSelectedTheme(imgSrc);
-  }
 
   const reset = () => {
     let retakeButton = document.querySelector(".retake");
@@ -96,10 +86,9 @@ const CameraPage = ({ Confirm }) => {
       setStep(prev => prev - 1);
     }
     if (step === 2) {
-        setSelectedTheme(null); // reset theme when leaving step 2
+      setSelectedTheme(null); // reset theme when leaving step 2
     }
     if (step === 3) {
-      setScreenshot(null); // reset the captured image when leaving step 3
       setSelectedSelfie(null);
     }
   };
@@ -147,7 +136,9 @@ const CameraPage = ({ Confirm }) => {
         <div className='body'>
           <div className='left-container'>
             <div className="step2">
-              <h2>{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
+              <div className='left-container-header'>
+                <h2>{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
+              </div>
               <div className="theme-select">
                 {(mode === 'selfie' ? themes : scotty).map((img, idx) => (
                   <img
@@ -161,29 +152,20 @@ const CameraPage = ({ Confirm }) => {
               </div>
             </div>
           </div>
-          <div className="back-button-container" style={{ display: 'flex', alignItems: 'center', padding: '0 1rem' }}>
+          <div className="back-button-container">
             <button className="button prev" onClick={handleBack}>Back</button>
           </div>
           <div className='right-container'>
-            <h2>Theme Selection Preview</h2>
+            <div className='right-container-header'>
+              <h2>Theme Selection Preview</h2>
+            </div>
             {selectedTheme && selectedTheme !== '/images/themes/theme1.png' && (
               <div className='overlay-container'>
-                {selectedSelfie ? (<img className='selfie' src={selectedSelfie} key={selectedSelfie} alt=""></img>
-                ) : (
-                  <Webcam
-                    className='webcam'
-                    audio={false} 
-                    mirrored={true}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    videoConstraints={{facingMode: "user"}}
-                  />
-                )}
-                <img className='overlay-theme' src={selectedTheme} key={selectedTheme} alt=""></img>
-            </div>
+                <img className='overlay-theme theme-preview' src={selectedTheme} key={selectedTheme} alt=""/>
+              </div>
             )}
           </div>
-          <div className="next-button-container" style={{ display: 'flex', alignItems: 'center', padding: '0 1rem' }}>
+          <div className="next-button-container">
             <button
               className="button next"
               onClick={handleNext}
@@ -196,7 +178,7 @@ const CameraPage = ({ Confirm }) => {
       )}
 
       {step === 3 && mode === 'selfie' && (
-        <div className="step3 camera-centered">
+        <div className="step3">
           <div className='overlay-container'>
             {selectedSelfie ? (
               <img className='selfie' src={selectedSelfie} alt="Selfie" />
@@ -211,7 +193,9 @@ const CameraPage = ({ Confirm }) => {
               />
             )}
             <img className='overlay-theme' src={selectedTheme} alt="Theme Overlay" />
-            <FaRegCircle className='capture-button' onClick={startCountdown}/>
+            <button className="capture-button" onClick={startCountdown}>
+              Click to take selfie
+            </button>
             {countdown !== null && countdown > 0 && (
               <div className="countdown-animation">{countdown}</div>
             )}

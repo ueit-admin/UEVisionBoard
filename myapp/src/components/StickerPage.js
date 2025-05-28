@@ -28,7 +28,8 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 height: 20,
                 text: "Name here",
                 color: 'white',
-                fixed: true
+                fixed: true,
+                edited: false
             };
             return [...prev, fixedBox];
         });
@@ -45,7 +46,7 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 height: 100,
                 text: "Add text",
                 color: color,
-                hasBeenEdited: false
+                edited: false
             }
         ]);
     };    
@@ -83,6 +84,19 @@ const StickerPage = ({ selfie, theme, Restart }) => {
     const clear = () => {
         setStickers([]);
         setTextBoxes((prev) => prev.filter((box) => box.fixed));
+        setTextBoxes([
+            {
+                id: 'fixed-box',
+                x: 450,
+                y: 160,
+                width: 170,
+                height: 20,
+                text: "Name here",
+                color: 'white',
+                fixed: true,
+                hasBeenEdited: false
+            }
+        ]);
     }
   
     const handleClose = () => {
@@ -98,8 +112,6 @@ const StickerPage = ({ selfie, theme, Restart }) => {
         const screenshotElement = sectionRef.current;
         const canvas = await html2canvas(screenshotElement);
         const image = canvas.toDataURL('image/png');
-
-       
 
         // Create a PDF and add the image to it
         const tempPdf = new jsPDF({orientation: 'portrait', unit: 'in', format: 'tabloid'});
@@ -236,8 +248,16 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                             >
                                                 <textarea
                                                     className="fixed-textbox"
-                                                    style={{ width: '100%', height: '100%' }}
                                                     value={box.text}
+                                                    onFocus={() =>
+                                                        setTextBoxes((prev) =>
+                                                            prev.map((b) =>
+                                                                b.id === box.id && !b.hasBeenEdited
+                                                                    ? { ...b, text: '', hasBeenEdited: true }
+                                                                    : b
+                                                            )
+                                                        )
+                                                    }
                                                     onChange={(e) =>
                                                         setTextBoxes((prev) =>
                                                             prev.map((b) =>
@@ -284,15 +304,15 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                                 }}
                                             >
                                                 <div className={`textbox-${box.color}`}>
-                                                                                                    {!isScreenshotting ? (
+                                                    {!isScreenshotting ? (
                                                         <textarea
                                                             className={`textbox-${box.color}`}
                                                             value={box.text}
                                                             onFocus={() =>
                                                                 setTextBoxes((prev) =>
                                                                     prev.map((b) =>
-                                                                        b.id === box.id && !b.hasBeenEdited
-                                                                            ? { ...b, text: '', hasBeenEdited: true }
+                                                                        b.id === box.id && !b.edited
+                                                                            ? { ...b, text: '', edited: true }
                                                                             : b
                                                                     )
                                                                 )

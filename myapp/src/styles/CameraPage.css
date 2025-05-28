@@ -36,21 +36,12 @@
     overflow-x: hidden;
 }
 
-.left-container {
-    width: 45%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
- 
-    flex-direction: column;
-}
-
 .opt-selector {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     padding: 1em;
-    margin-bottom: 6em;
+    margin-bottom: 1em;
 }
 
 .opt-directions {
@@ -61,7 +52,7 @@
 
 .opt-button {
     font-size: 4em;
-    padding: 0.5em 0.75em;
+    padding: 0.5em 1em;
     border: solid #003DA5 2px;
     border-radius: 2em;
     background-color: white;
@@ -74,6 +65,18 @@
     color: white;
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.left-container {
+    width: 45%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container-header h2 {
+    padding-top: 1em;
 }
 
 .theme-select {
@@ -91,20 +94,36 @@
     border-radius: 1em;
     height: 30vh;
     background-image:
-      linear-gradient(45deg, #888 26%, transparent 26%), 
-      linear-gradient(135deg, #888 26%, transparent 26%),
-      linear-gradient(45deg, transparent 75%, #888 75%),
-      linear-gradient(135deg, transparent 75%, #888 75%);
+        linear-gradient(45deg, #888 26%, transparent 26%), 
+        linear-gradient(135deg, #888 26%, transparent 26%),
+        linear-gradient(45deg, transparent 75%, #888 75%),
+        linear-gradient(135deg, transparent 75%, #888 75%);
     background-size: 10px 10px;
     background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
     transition: all 0.3s ease;
     margin: 1.5em 0;
 }
 
+
 .theme-select img:hover {
     transform: scale(1.1);
     cursor: pointer;
     border: solid 1px black
+}
+
+.theme-preview {
+    border: solid 1px lightgray;
+    height: 30vh;
+    width: 100%;
+    background-image:
+        linear-gradient(45deg, #888 26%, transparent 26%), 
+        linear-gradient(135deg, #888 26%, transparent 26%),
+        linear-gradient(45deg, transparent 75%, #888 75%),
+        linear-gradient(135deg, transparent 75%, #888 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+    transition: all 0.3s ease;
+    margin: 1.5em 0;
 }
 
 .photos-instructions {
@@ -156,6 +175,10 @@
     position: relative; 
 }   
 
+.right-container-header h2 {
+    padding-top: 1em;
+}
+
 .overlay-container {
     aspect-ratio: 11/17;
     height: 90%;
@@ -171,14 +194,18 @@
     position: absolute;
     top: 0;
     height: 50%;
+    width: 100%;
     z-index: 1;
+    object-fit: contain;
 }
 
 .webcam {
     position: absolute;
     top: 0;
     height: 50%;
+    width: 100%;
     z-index: 2;
+    object-fit: cover;
 }
 
 .overlay-theme {
@@ -237,16 +264,30 @@
     z-index: 5;
 }
 
-.capture-button{
+.capture-button {
     position: absolute;
-    font-size: 8em;
     top: 85%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    color: #888888;
+    background-color: #333;         /* Dark gray background */
+    color: white;                   /* White text */
+    border: none;
+    border-radius: 50%;             /* Makes it circular */
+    width: 150px;
+    height: 150px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
     transition: all 0.3s ease;
     z-index: 4;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
 
 .capture-button:hover{
     transform: translate(-50%, -50%) scale(1.2);
@@ -281,7 +322,11 @@
     background: #003DA5;
     color: #fff;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.3s;
+}
+
+.button.next:hover, .button.prev:hover {
+    background-color: #002e7a;
 }
 
 .button.next:disabled {
@@ -295,8 +340,7 @@
     justify-content: flex-end;
     width: 100%;
     padding: 1em 2em;
-    margin-top: 1em;
-  }
+}
 
 .back-button-container,
 .next-button-container {
@@ -305,6 +349,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 1rem;
 }
 
 .back-button-container .button,
@@ -314,12 +359,19 @@
 }
 
 .button.bottom-left {
-    position: absolute;
+    padding: 0.3em 2em;
+    margin: 0.5em;
     bottom: 0;
     left: 0;
-    margin: 0.5em;
+    font-size: 1.5em;
+    border-radius: 1em;
+    align-items: center;
+    justify-content: center;
+    border: none;
     background-color: #003DA5;
     color: white;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .button.bottom-left:hover {
