@@ -104,27 +104,28 @@ const CameraPage = ({ Confirm }) => {
 
       {step === 1 && (
         <div className="step1">
+          <img className='background-image' src="images/background.jpg" alt='UCR Background'></img>
           <div className="opt-directions">
             Please select an option
           </div>
-            <div className="opt-selector">
-            <button className={`opt-button ${mode === 'selfie' ? 'blue' : ''}`}
+          <div className="opt-selector">
+            <button
+              className={`opt-button ${mode === 'selfie' ? 'select' : ''}`}
               onClick={() => setMode('selfie')}
             >
-              Selfie
+            <img src="images/options/selfie.png" alt="Selfie" className="opt-image" />
             </button>
             <button
-              className={`opt-button ${mode === 'scotty' ? 'blue' : ''}`}
+              className={`opt-button ${mode === 'scotty' ? 'select' : ''}`}
               onClick={() => setMode('scotty')}
             >
-              Scotty
+            <img src="images/options/scotty.png" alt="Scotty" className="opt-image" />
             </button>
           </div>
           <div className="button-group">
             <button
-              className="button next"
+              className={`button-next ${!mode ? 'hidden-step1' : ''}`}
               onClick={handleNext}
-              disabled={!mode}
             >
               Next
             </button>
@@ -137,7 +138,7 @@ const CameraPage = ({ Confirm }) => {
           <div className='left-container'>
             <div className="step2">
               <div className='left-container-header'>
-                <h2>{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
+                <h2 className="step2-subheading">{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
               </div>
               <div className="theme-select">
                 {(mode === 'selfie' ? themes : scotty).map((img, idx) => (
@@ -157,7 +158,7 @@ const CameraPage = ({ Confirm }) => {
           </div>
           <div className='right-container'>
             <div className='right-container-header'>
-              <h2>Theme Selection Preview</h2>
+              <h2 className="step2-subheading">Theme Selection Preview</h2>
             </div>
             {selectedTheme && selectedTheme !== '/images/themes/theme1.png' && (
               <div className='overlay-container'>
@@ -200,9 +201,7 @@ const CameraPage = ({ Confirm }) => {
               <div className="countdown-animation">{countdown}</div>
             )}
           </div>
-          <div className="button-group">
-            <button className="button prev bottom-left" onClick={handleBack}>Back</button>
-          </div>
+          <button className="button prev bottom-left" onClick={handleBack}>Back</button>
           <button className='hidden button retake' onClick={reset}>Retake</button>
           <button className='hidden button confirm' onClick={handleConfirm}>Confirm</button>
         </div>
