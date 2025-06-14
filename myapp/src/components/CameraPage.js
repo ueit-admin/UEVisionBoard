@@ -104,7 +104,7 @@ const CameraPage = ({ Confirm }) => {
 
       {step === 1 && (
         <div className="step1">
-          <img className='background-image' src="images/background.jpg" alt='UCR Background'></img>
+          <img className='camera-background-image' src="images/background.png" alt='UCR Background'></img>
           <div className="opt-directions">
             Please select an option
           </div>
@@ -136,7 +136,6 @@ const CameraPage = ({ Confirm }) => {
       {step === 2 && (
         <div className='body'>
           <div className='left-container'>
-            <div className="step2">
               <div className='left-container-header'>
                 <h2 className="step2-subheading">{mode === 'selfie' ? 'Pick a selfie poster theme' : 'Pick a Scotty avatar theme'}</h2>
               </div>
@@ -151,7 +150,6 @@ const CameraPage = ({ Confirm }) => {
                   />
                 ))}
               </div>
-            </div>
           </div>
           <div className="back-button-container">
             <button className="button prev" onClick={handleBack}>Back</button>
@@ -161,7 +159,7 @@ const CameraPage = ({ Confirm }) => {
               <h2 className="step2-subheading">Theme Selection Preview</h2>
             </div>
             {selectedTheme && selectedTheme !== '/images/themes/theme1.png' && (
-              <div className='overlay-container'>
+              <div className='overlay-container preview'>
                 <img className='overlay-theme theme-preview' src={selectedTheme} key={selectedTheme} alt=""/>
               </div>
             )}
@@ -180,7 +178,7 @@ const CameraPage = ({ Confirm }) => {
 
       {step === 3 && mode === 'selfie' && (
         <div className="step3">
-          <div className='overlay-container'>
+          <div className='overlay-container capture'>
             {selectedSelfie ? (
               <img className='selfie' src={selectedSelfie} alt="Selfie" />
             ) : (

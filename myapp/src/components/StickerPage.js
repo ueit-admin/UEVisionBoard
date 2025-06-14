@@ -4,8 +4,6 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Draggable from 'react-draggable';
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
 import { Rnd } from "react-rnd";
 
 const StickerPage = ({ selfie, theme, Restart }) => {
@@ -174,9 +172,6 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                 <div className='body'>
                     <div className='left-container'>
                         <div className='sticker-select'>
-                        <button className="text-blue" onClick={() => addTextBox('blue')}>Click to Add Text (L)</button>
-                        <button className="text-yellow" onClick={() => addTextBox('yellow')}>Click to Add Text (M)</button>
-                        <button className="text-white" onClick={() => addTextBox('white')}>Click to Add Text (S)</button>
                             {stickerSources.map((src, index) => (
                                 <img
                                     key={index}
@@ -186,27 +181,13 @@ const StickerPage = ({ selfie, theme, Restart }) => {
                                     onDragStart={(event) => event.dataTransfer.setData('stickerSrc', src)}
                                 />
                             ))}
+                            <button className="text-blue" onClick={() => addTextBox('blue')}>Click to Add Text (L)</button>
+                            <button className="text-yellow" onClick={() => addTextBox('yellow')}>Click to Add Text (M)</button>
+                            <button className="text-white" onClick={() => addTextBox('white')}>Click to Add Text (S)</button>
                         </div>
                     </div>
                     <div className='sticker-instructions'>
-                        <div className='drag-sticker'>
-                            <IoIosArrowBack className='arrow'/>
-                            <h2>
-                                Drag your favorite<br/>stickers to your poster
-                            </h2>
-                        </div>
-                        <div className='rearrange-sticker'>
-                            <h2>
-                                Rearrange the stickers<br/>to your liking
-                            </h2>
-                            <IoIosArrowForward className='arrow'/>
-                        </div>
-                        <div className='print-vision'>
-                            <h2>
-                                Print your vision board!
-                            </h2>
-                            <IoIosArrowForward className='arrow'/>
-                        </div>
+                        <img className='sticker-instructions-img' src="images/dragndrop.png" alt='Sticker Intructions'></img>
                     </div>
                     <div className='right-container'>
                         <div className='overlay-container' ref={sectionRef}>

@@ -4,17 +4,16 @@ import { IoColorPaletteOutline } from "react-icons/io5";
 import { IoCameraOutline } from "react-icons/io5";
 import { RiEmojiStickerLine } from "react-icons/ri";
 import { IoPrintOutline } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
 import { TbArrowBadgeRight } from "react-icons/tb";
 
 const LandingPage = ({ Create }) => {
 
   return (
     <div className='landing-page'>
-      <img className='background-image' src="images/background.jpg" alt='UCR Background'></img>
+      <img className='background-image' src="images/background.png" alt='UCR Background'></img>
       <div className='main'>
         <div className='card welcome'>
-          <img className='ucr-ray' src="images/ray.png"></img>
+          <img className='ucr-ray' src="images/ray.png" alt='UCR Ray'></img>
           <h1>Welcome to the UCR Undergraduate Education Vision Space!</h1>
           <div className='instructions'>
             <div className='item'>
